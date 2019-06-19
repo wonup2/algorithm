@@ -56,8 +56,7 @@ public class DFS4 {
 	public static void main(String[] args){
 		try {		
 			init();
-			result = solve();			
-			System.out.println(result);
+			System.out.println(solve());
 			
 		}catch(Exception e) {
 			System.out.println(e);
