@@ -1,4 +1,4 @@
-//2178 - Adjacency graph
+//Baek Joon 2178 - Adjacency graph
 /*
 4 6
 101111
