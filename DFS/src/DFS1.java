@@ -1,4 +1,13 @@
+//Adjacency Graph - How many islands?
+/*
+4 5
+1 1 1 0 0
+1 1 0 0 1
+1 0 0 1 1
+0 0 1 0 0
 
+3
+*/
 import java.util.*; 
 public class DFS1 {
 	

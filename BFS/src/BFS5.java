@@ -1,66 +1,60 @@
 import java.util.*;
 
-//7576 Tomato  -- Adjacency Graph
+//1260  -  Adjacency List
+/*
+4 5 1
+1 2
+1 3
+1 4
+2 4
+3 4
+*/
 
 public class BFS5 {
-
-	static Scanner in;
-	static int[][] a;
-	static int c,r;
-	static Queue<Integer> q;
-	static int[] dx= {-1,1,0,0}, dy= {0,0,-1,1};
 	
-	public static void main(String[] args) {	
-		in = new Scanner(System.in);
-		init();
-		System.out.println(solve());
+	static int n, m, s;
+	static boolean[] v;
+	static List<Integer> a[];
+	
+	@SuppressWarnings("unchecked")
+	public static void main(String[] args) {
+		ini();
+		bfs(s);		
+	}
+	static void ini(){
+		Scanner in = new Scanner(System.in);
+		n = in.nextInt();
+		m = in.nextInt();
+		s = in.nextInt();
+		v=new boolean[n+1];
+		a=new List[n+1];
+		for(int i=0; i<=m; i++)
+			a[i] = new ArrayList<Integer>();
+		
+		for(int i=0; i<m; i++){
+			int n1=in.nextInt();
+			int n2=in.nextInt();
+			a[n1].add(n2);
+			a[n2].add(n1);			
+		}
 		in.close();
 	}
-	static void init() {
-		c = in.nextInt();
-		r = in.nextInt();
-		a = new int[r][c];
-		q = new LinkedList<Integer>();
-
-		for(int i=0; i<r; i++) {
-			for(int j=0; j<c; j++) {
-				a[i][j] = in.nextInt();
-				if(a[i][j]==1) {
-					q.add(i);
-					q.add(j);
+	
+	static void bfs(int start){
+		Queue<Integer> q = new LinkedList<Integer>();
+		q.add(start);
+		v[start] = true;
+		while(!q.isEmpty()){
+			int x = q.poll();
+			v[x] = true;
+			System.out.print(x+" ");
+			for(int i=0; i<a[x].size(); i++){
+				int y = a[x].get(i);
+				if(!v[y]) {
+					q.add(y);
+					v[y] = true;
 				}
 			}
 		}
-	}
-	
-	static int solve() {
-	    bfs();
-	    return check();
-	}
-	static void bfs() {
-		while (!q.isEmpty()) {
-			   int y=q.poll();
-			   int x=q.poll();
-	           for (int i = 0; i < 4; i++) {
-	        	   int ny = y + dy[i], nx = x + dx[i];
-			       if (ny < 0 || ny >= r || nx < 0 || nx >= c) continue;
-			       if (a[ny][nx] == 0) {
-			    	   a[ny][nx] = a[y][x] + 1;
-			    	   q.add(ny);
-			    	   q.add(nx);
-			       }
-			   }
-		}
-	}
-
-	static int check() {
-		int max = Integer.MIN_VALUE;
-		for (int i = 0; i < r; i++) {
-		   for (int j = 0; j < c; j++) {
-			   if (a[i][j]==0) return -1;
-		       max = Math.max(max, a[i][j]);
-		   }
-	    }
-		return max-1;
-	}
+	}	
 }

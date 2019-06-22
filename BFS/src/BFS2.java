@@ -1,60 +1,61 @@
-import java.util.*;
-
-//1260  -  Adjacency List
+//Baek Joon 2178 - Adjacency graph - maze
 /*
-4 5 1
-1 2
-1 3
-1 4
-2 4
-3 4
+4 6
+101111
+101010
+101011
+111011
 */
+//If you done, do B2667 - numbering blocks
 
+import java.util.*;
 public class BFS2 {
+
+	static int n, m, a[][];
+	static Queue<Integer> q;
+	static int dx[]= {-1,1,0,0};
+	static int dy[]= {0,0,-1,1};
+	static Scanner in;
 	
-	static int n, m, s;
-	static boolean[] v;
-	static List<Integer> a[];
-	
-	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
-		ini();
-		bfs(s);		
-	}
-	static void ini(){
-		Scanner in = new Scanner(System.in);
-		n = in.nextInt();
-		m = in.nextInt();
-		s = in.nextInt();
-		v=new boolean[n+1];
-		a=new List[n+1];
-		for(int i=0; i<=m; i++)
-			a[i] = new ArrayList<Integer>();
-		
-		for(int i=0; i<m; i++){
-			int n1=in.nextInt();
-			int n2=in.nextInt();
-			a[n1].add(n2);
-			a[n2].add(n1);			
-		}
+		in = new Scanner(System.in);
+		init();
+		System.out.println(solve());
 		in.close();
 	}
+	public static void init() {
+		n=in.nextInt();
+		m=in.nextInt();
+		a=new int[n][m];
+		char t[][]=new char[n][m];
+		for(int i=0; i<n; i++) 
+			t[i]=in.next().toCharArray();
+		for(int i=0; i<n; i++)
+			for(int j=0; j<m; j++) 
+				a[i][j] = t[i][j]-'0';
+		q=new LinkedList<Integer>();
+	}
 	
-	static void bfs(int start){
-		Queue<Integer> q = new LinkedList<Integer>();
-		q.add(start);
-		v[start] = true;
-		while(!q.isEmpty()){
+	static String solve() {
+		a[0][0]=2;	
+		bfs(0,0);
+		return (a[n-1][m-1]-1)+"";
+	}
+	static void bfs(int r, int c) {
+		q.add(r);
+		q.add(c);
+		while(!q.isEmpty()) {
 			int x = q.poll();
-			v[x] = true;
-			System.out.print(x+" ");
-			for(int i=0; i<a[x].size(); i++){
-				int y = a[x].get(i);
-				if(!v[y]) {
-					q.add(y);
-					v[y] = true;
-				}
+			int y = q.poll();
+			for(int i=0; i<4; i++) {
+				int nx=x+dx[i];
+				int ny=y+dy[i];
+				if(nx<0||nx>=n||ny<0||ny>=m) continue;
+				if(a[nx][ny]==0) continue;
+				q.add(nx); 
+				q.add(ny);
+				a[nx][ny]=a[x][y]+1;				
 			}
 		}
-	}	
+	}
 }

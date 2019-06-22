@@ -1,4 +1,4 @@
-//B2667
+//B2667 - numbering blocks
 
 import java.util.*;
 import java.io.*;
@@ -7,6 +7,7 @@ public class DFS2 {
 	
 	static int n;
 	static String a[][], result="";	
+
 	static boolean set;
     static int temp;
     static Scanner in;

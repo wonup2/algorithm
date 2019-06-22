@@ -9,11 +9,13 @@ public class DFS4 {
 	static boolean[] v;
 	static String result;
 	
-	static void dfs(int s){
-		if(v[s]) return;
-		v[s]=true;
-		for(int i:a[s]){
-			if(!v[i]) dfs(i);
+	public static void main(String[] args){
+		try {		
+			init();
+			System.out.println(solve());
+			
+		}catch(Exception e) {
+			System.out.println(e);
 		}
 	}
 	
@@ -53,13 +55,11 @@ public class DFS4 {
 		return ans+"";
 	}
 	
-	public static void main(String[] args){
-		try {		
-			init();
-			System.out.println(solve());
-			
-		}catch(Exception e) {
-			System.out.println(e);
+	static void dfs(int s){
+		if(v[s]) return;
+		v[s]=true;
+		for(int i:a[s]){
+			if(!v[i]) dfs(i);
 		}
-	}
+	}	
 }

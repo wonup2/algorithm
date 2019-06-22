@@ -8,7 +8,7 @@ public class BinarySearch_1 {
 		//target
 		int m=in.nextInt();
 		
-		//input data pile
+		//input data
 		int n=in.nextInt();
 		int[] a=new int[n];
 		for(int i=0; i<n; i++) a[i]=in.nextInt();
