@@ -10,7 +10,7 @@ import java.util.*;
 3 4
 */
 
-public class BFS5 {
+public class BFS05 {
 	
 	static int n, m, s;
 	static boolean[] v;

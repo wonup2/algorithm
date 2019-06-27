@@ -9,7 +9,7 @@
 3
 */
 import java.util.*; 
-public class DFS1 {
+public class DFS01 {
 	
 	static int dx[] = { 0,0,-1,1 };
 	static int dy[] = { -1,1,0,0 };

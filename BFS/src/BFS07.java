@@ -1,7 +1,7 @@
 //Baek Joon 2583 - Adjacency graph
 
 import java.util.*;
-public class BFS7 {
+public class BFS07 {
 
 	static int n, m, k, cnt, a[][], r[];
 	static Queue<Integer> q;

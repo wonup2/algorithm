@@ -12,7 +12,7 @@
 */
 
 import java.util.*;
-public class BFS4 {
+public class BFS04 {
 
 	static Scanner in;
 	static boolean v[];

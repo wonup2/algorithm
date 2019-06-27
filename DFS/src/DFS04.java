@@ -2,7 +2,7 @@
 
 import java.io.*;
 import java.util.*;
-public class DFS4 {
+public class DFS04 {
 	static int n;
 	static int m;
 	static ArrayList<Integer>[] a;

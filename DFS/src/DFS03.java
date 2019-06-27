@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 //b2583
 import java.util.*;
-public class DFS3 {
+public class DFS03 {
 	
 	static boolean a[][];
 	static int n,m,t,cnt=1;

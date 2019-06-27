@@ -1,7 +1,7 @@
 //b 2468
 import java.util.*;
 
-public class DFS8 {
+public class DFS08 {
 	static int N;
 	static int[][] section;
 	static boolean[][] visit; 

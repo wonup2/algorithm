@@ -10,7 +10,7 @@
 */
 
 import java.util.*;
-public class BFS1 {
+public class BFS01 {
 
 	static int n, m, a[][];
 	static Queue<Integer> q;
@@ -27,6 +27,7 @@ public class BFS1 {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		in.close();
 	}
 
 	static void init() {

@@ -1,10 +1,11 @@
-//백준 7562
+//B7562 knight
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.Point;
 import java.io.FileInputStream;
  
-public class BFS8 {
+public class BFS08 {
     static int l;
     static int[][] map;
     static int[][] visited;

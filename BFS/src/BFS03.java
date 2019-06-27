@@ -1,6 +1,6 @@
 //7576 Tomato  -- Adjacency Graph
 import java.util.*;
-public class BFS3 {
+public class BFS03 {
 
 	static Scanner in;
 	static int c, r, a[][];

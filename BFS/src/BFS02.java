@@ -9,7 +9,7 @@
 //If you done, do B2667 - numbering blocks
 
 import java.util.*;
-public class BFS2 {
+public class BFS02 {
 
 	static int n, m, a[][];
 	static Queue<Integer> q;
