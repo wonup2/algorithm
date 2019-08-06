@@ -6,7 +6,9 @@ import java.util.*;
 public class BFS10 {
  
 	static int f, s, g, u, d, v[];
+	
     public static void main(String args[]) throws Exception {
+    	
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] str = br.readLine().split(" ");
  
@@ -16,8 +18,8 @@ public class BFS10 {
         u = Integer.parseInt(str[3]);
         d = Integer.parseInt(str[4]);
         v = new int[f + 1];
-        System.out.println(bfs());
- 
+        System.out.println(bfs()); 
+        
     }
  
     public static String bfs() {
@@ -26,7 +28,6 @@ public class BFS10 {
         v[s] = 1;
  
         while (!q.isEmpty()) {
-        	System.out.println(Arrays.toString(v));
         	System.out.println(q);
             int current = q.poll();
             if (current == g) {
@@ -52,3 +53,20 @@ public class BFS10 {
         return "use the stairs";
     }
 }
+
+
+/*
+10 1 10 2 1
+[1]
+[3]
+[5, 2]
+[2, 7, 4]
+[7, 4]
+[4, 9, 6]
+[9, 6]
+[6, 8]
+[8]
+[10]
+6
+
+*/

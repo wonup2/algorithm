@@ -3,7 +3,7 @@ import java.util.*;
 public class BFS03 {
 
 	static Scanner in;
-	static int c, r, a[][];
+	static int n, m, a[][];
 	static Queue<Integer> q;
 	static int[] dx= {-1,1,0,0}, dy= {0,0,-1,1};
 	
@@ -14,13 +14,13 @@ public class BFS03 {
 		in.close();
 	}
 	static void init() {
-		c = in.nextInt();
-		r = in.nextInt();
-		a = new int[r][c];
+		m = in.nextInt();
+		n = in.nextInt();
+		a = new int[n][m];
 		q = new LinkedList<Integer>();
 
-		for(int i=0; i<r; i++) {
-			for(int j=0; j<c; j++) {
+		for(int i=0; i<n; i++) {
+			for(int j=0; j<m; j++) {
 				a[i][j] = in.nextInt();
 				if(a[i][j]==1) {
 					q.add(i);
@@ -39,17 +39,17 @@ public class BFS03 {
 			   int y=q.poll();
 			   int x=q.poll();
 	           for (int i = 0; i < 4; i++) {
-	        	   int ny = y + dy[i], nx = x + dx[i];
-			       if (ny < 0 || ny >= r || nx < 0 || nx >= c) continue;
-			       if (a[ny][nx] == 0) {
-			    	   a[ny][nx] = a[y][x] + 1;
-			    	   q.add(ny);
-			    	   q.add(nx);
-			       }
-			   }
-	         
+	        	   int nx = x + dx[i];
+	        	   int ny = y + dy[i];	 
+	        	   
+			       if (ny < 0 || ny >= m || nx < 0 || nx >= n || a[ny][nx] != 0 ) continue;
+			  
+			       a[ny][nx] = a[y][x] + 1;
+			       q.add(ny);
+			       q.add(nx);			       
+			   }	         
 		}
-		  print(a);
+		  //print(a);
 	}
 
 	static void print(int[][] a) {
@@ -65,8 +65,8 @@ public class BFS03 {
 	
 	static int check() {
 		int max = Integer.MIN_VALUE;
-		for (int i = 0; i < r; i++) {
-		   for (int j = 0; j < c; j++) {
+		for (int i = 0; i < n; i++) {
+		   for (int j = 0; j < m; j++) {
 			   if (a[i][j]==0) return -1;
 		       max = Math.max(max, a[i][j]);
 		   }

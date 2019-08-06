@@ -30,28 +30,45 @@ public class BFS02 {
 		char t[][]=new char[n][m];
 		for(int i=0; i<n; i++) 
 			t[i]=in.next().toCharArray();
+		
+		
+		
+		
+		
+		
+		
 		for(int i=0; i<n; i++)
 			for(int j=0; j<m; j++) 
 				a[i][j] = t[i][j]-'0';
-		q=new LinkedList<Integer>();
+		
+		
+		
+		
 	}
 	
-	static String solve() {
+	static int solve() {
+		q=new LinkedList<Integer>();
 		a[0][0]=2;	
 		bfs(0,0);
-		return (a[n-1][m-1]-1)+"";
+		return (a[n-1][m-1]-1);
 	}
+	
+	
+	
+	
+	
 	static void bfs(int r, int c) {
 		q.add(r);
 		q.add(c);
+		
 		while(!q.isEmpty()) {
 			int x = q.poll();
 			int y = q.poll();
 			for(int i=0; i<4; i++) {
 				int nx=x+dx[i];
 				int ny=y+dy[i];
-				if(nx<0||nx>=n||ny<0||ny>=m) continue;
-				if(a[nx][ny]==0) continue;
+				if(nx<0||nx>=n||ny<0||ny>=m || a[nx][ny]!=1) continue;
+		
 				q.add(nx); 
 				q.add(ny);
 				a[nx][ny]=a[x][y]+1;				

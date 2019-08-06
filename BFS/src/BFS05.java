@@ -14,21 +14,32 @@ public class BFS05 {
 	
 	static int n, m, s;
 	static boolean[] v;
-	static List<Integer> a[];
+	static ArrayList<Integer> a[];
+	static Queue<Integer> q;
+	static Scanner in;
+	
+	public static void main(String[] args) {
+		try {
+			in = new Scanner(System.in);
+			init();
+			System.out.println(bfs(s));
+			in.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}			
+	}	
 	
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) {
-		ini();
-		bfs(s);		
-	}
-	static void ini(){
-		Scanner in = new Scanner(System.in);
+	static void init(){
 		n = in.nextInt();
 		m = in.nextInt();
 		s = in.nextInt();
-		v=new boolean[n+1];
-		a=new List[n+1];
-		for(int i=0; i<=m; i++)
+		v = new boolean[n+1];
+		a = new ArrayList[n+1];
+		q = new LinkedList<Integer>();
+		
+		for(int i=0; i<=n; i++)
 			a[i] = new ArrayList<Integer>();
 		
 		for(int i=0; i<m; i++){
@@ -36,25 +47,25 @@ public class BFS05 {
 			int n2=in.nextInt();
 			a[n1].add(n2);
 			a[n2].add(n1);			
-		}
-		in.close();
+		}	
+		
+		//System.out.println(Arrays.toString(a));
 	}
 	
-	static void bfs(int start){
-		Queue<Integer> q = new LinkedList<Integer>();
+	static String bfs(int start){
 		q.add(start);
 		v[start] = true;
+		String result="";
+		
 		while(!q.isEmpty()){
 			int x = q.poll();
-			v[x] = true;
-			System.out.print(x+" ");
-			for(int i=0; i<a[x].size(); i++){
-				int y = a[x].get(i);
-				if(!v[y]) {
-					q.add(y);
-					v[y] = true;
-				}
+			result+=x+" ";
+			for(int y:a[x]){			
+				if(v[y]) continue;
+				q.add(y);
+				v[y] = true;				
 			}
-		}
+		}		
+		return result;
 	}	
 }
