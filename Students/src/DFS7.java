@@ -1,26 +1,21 @@
 import java.util.*;
 import java.io.*;
-//b 2468
-public class DFS08 {
+
+public class DFS7 {
 	
 	static Scanner in;
-	static int n, m, a[][];
-	static boolean b[][];
+	static int n, m, a[][], bin[][];
 	static int dx[] = {-1,1,0,0};
 	static int dy[] = {0,0,-1,1};
-
-	static int result;
+	static ArrayList<Integer> arr;
+	static int maxval;
+	static int tempcount = 0;
 	static Set<Integer> set;
-	
-	public static void main(String[] args){
-		try {
-			init();
-			System.out.println(solve());
-			in.close();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}		
+	public static void main(String[] args) throws IOException{
+		
+		init();
+		System.out.println(solve());
+		
 	}
 	
 	public static void init() {
@@ -28,10 +23,10 @@ public class DFS08 {
 		n = in.nextInt();
 		m = n;
 		a = new int[n][m];
-
-		result = 0;
+		bin = new int[n][m];
+		arr = new ArrayList<Integer>();
+		maxval = 0;
 		set = new HashSet<Integer>();
-		
 		for(int r = 0; r < n; r++) {
 			for(int c = 0; c < m; c++) {
 				a[r][c] = in.nextInt();
@@ -41,40 +36,46 @@ public class DFS08 {
 	}
 	
 	public static int solve() {
+
 		for(int q : set) {
 			int count = 0;
-			b = new boolean[n][m];
-			
+			bin = new int[n][m];
 			for(int r = 0; r < n; r++) {
 				for(int c = 0; c < m; c++) {
-					if(a[r][c] > q) b[r][c]=true;					
+					if(a[r][c]<=q) {
+						bin[r][c]=0;
+					}
+					else {
+						bin[r][c]=1;
+					}
 				}
 			}
-			
-			//System.out.println(Arrays.deepToString(a) +"\n"+Arrays.deepToString(b));
 		   
 			for(int r = 0; r < n; r++) {
 				for(int c = 0; c < m; c++) {				
-					if(b[r][c]) {
+					if(bin[r][c]==1) {
 						dfs(r, c);
 						count++;						
 					}						
 				}
 			}
-			
-			result=Math.max(result, count);	
+			arr.add(count);			
 		}
-
+		int result = arr.get(arr.size()-1);
 		return result==0? 1:result;
 	}
 	
 	public static void dfs(int x, int y) {
-		b[x][y] = false;
+		bin[x][y] = 0;
 		for(int i = 0; i < 4; i++) {
 			int nx = x + dx[i];
 			int ny = y + dy[i];
-			if(nx<0||nx>=n||ny<0||ny>=m || !b[nx][ny]) continue;
-			dfs(nx, ny);	
+			if(nx<0||nx>=n||ny<0||ny>=m)
+				continue;
+			if(bin[nx][ny]==1) {
+				dfs(nx, ny);
+			}
 		}
-	}	
+	}
+	
 }
