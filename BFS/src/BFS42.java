@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.awt.Point;
 import java.io.FileInputStream;
  
-public class BFS08 {
+public class BFS42 {
     static int l;
     static int[][] map;
     static int[][] visited;

@@ -2,7 +2,7 @@
 
 import java.util.*;
 
-public class BFS06 {
+public class BFS40 {
 
 	static Scanner in;
 	static int v[] = new int[100001];

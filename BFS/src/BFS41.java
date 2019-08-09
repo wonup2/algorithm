@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.io.*;
 import java.util.*;
 
-public class BFS09 {
+public class BFS41 {
     
     static int n;
     static char[][] a;

@@ -1,72 +1,75 @@
-//B5014 StartLink 2point
-
-import java.io.*;
-import java.util.*;
- 
-public class BFS10 {
- 
-	static int f, s, g, u, d, v[];
-	
-    public static void main(String args[]) throws Exception {
-    	
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] str = br.readLine().split(" ");
- 
-        f = Integer.parseInt(str[0]);
-        s = Integer.parseInt(str[1]);
-        g = Integer.parseInt(str[2]);
-        u = Integer.parseInt(str[3]);
-        d = Integer.parseInt(str[4]);
-        v = new int[f + 1];
-        System.out.println(bfs()); 
-        
-    }
- 
-    public static String bfs() {
-        Queue<Integer> q = new LinkedList<Integer>();
-        q.add(s);
-        v[s] = 1;
- 
-        while (!q.isEmpty()) {
-        	System.out.println(q);
-            int current = q.poll();
-            if (current == g) {
-                return String.valueOf(v[current] - 1);
-            }
-            //다음 up 이동할 위치가 최대값보다 작고 방문하지 않은 지점이여야 한다.
-            if (current + u <= f) {
-                if (v[current + u] == 0) {
-                    v[current + u] = v[current] + 1;
-                    q.add(current + u);
-                }
- 
-            }
-            //다음 down 이동할 위치가 최대값보다 작고 방문하지 않은 지점이여야 한다.
-            if (current - d > 0) {
-                if (v[current - d] == 0) {
-                    v[current - d] = v[current] + 1;
-                    q.add(current - d);
-                }
-            }
- 
-        }
-        return "use the stairs";
-    }
-}
-
-
+//Adjacency Graph - How many islands?
 /*
-10 1 10 2 1
-[1]
-[3]
-[5, 2]
-[2, 7, 4]
-[7, 4]
-[4, 9, 6]
-[9, 6]
-[6, 8]
-[8]
-[10]
-6
+4 5
+1 1 1 0 0
+1 1 0 0 1
+1 0 0 1 1
+0 0 1 0 0
 
+3
 */
+
+import java.util.*;
+public class BFS10 {
+
+	static int n, m, a[][];
+	static Queue<Integer> q;
+	static int dx[]= {-1,1,0,0};
+	static int dy[]= {0,0,-1,1};
+	static Scanner in;
+	
+	public static void main(String[] args) {
+		try {
+			in = new Scanner(System.in);
+			init();
+			System.out.println(solve());
+			in.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		in.close();
+	}
+
+	static void init() {
+		n=in.nextInt();
+		m=in.nextInt();
+		a=new int[n][m];
+		q=new LinkedList<Integer>();
+		for(int i=0; i<n; i++) 
+			for(int j=0; j<m; j++) 
+				a[i][j]=in.nextInt();
+	}
+	
+	static int solve() {
+		int count=0;
+		for(int i=0; i<n; i++) {
+			for(int j=0; j<m; j++) {
+				if(a[i][j]==1) {
+					bfs(i,j); 
+					count++;
+				}
+			}
+		}
+			
+		return count;
+	}
+	static void bfs(int x, int y) {
+		q.add(x);
+		q.add(y);
+		a[x][y]=0;
+		while(!q.isEmpty()) {
+			x = q.poll();
+			y = q.poll();
+			
+			for(int i=0; i<4; i++) {
+				int nx = x + dx[i];
+				int ny = y + dy[i];
+				if(nx<0 || nx>=n || ny<0 || ny>=m) continue;
+				if(a[nx][ny]==0) continue;
+				q.add(nx);
+				q.add(ny);
+				a[nx][ny] = 0;				
+			}
+		}
+	}
+}
