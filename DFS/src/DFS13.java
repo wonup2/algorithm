@@ -2,7 +2,7 @@
 
 import java.util.*;
 import java.io.*;
-public class DFS05 {
+public class DFS13 {
 	static BufferedReader in;
 	static int n, m, cost[];
 	static boolean v[];
@@ -41,24 +41,29 @@ public class DFS05 {
 	            a[y].add(x);
 	        }
 	        
+	        System.out.println(Arrays.toString(a));
+	        System.out.println(Arrays.toString(v));
+	        System.out.println(Arrays.toString(cost));
+	        
         }catch (IOException e) {
         	e.printStackTrace();
         }        
     }
     static long solve() {
     	long cost = 0;
-	    for (int i = 1; i <=n; i++) 
+	    for (int i = 1; i <=n; i++) {
 	    	if (!v[i]) cost += dfs(i);
-	        
+	    }
 	    return cost;
 	}
 
 	static long dfs(int i) {
 		v[i] = true;
+		
 		long min = cost[i];
-	    for (int c: a[i]) 
+	    for (int c: a[i]) {
 	    	if (!v[c]) min = Math.min(min, dfs(c));
-	        
+	    }
 	    return min;	
 	}	
 }

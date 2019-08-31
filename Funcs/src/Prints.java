@@ -9,5 +9,4 @@ public class Prints {
 			System.out.println();
 		}
 	}
-
 }

@@ -9,14 +9,26 @@
 3
 */
 import java.util.*; 
-public class DFS01 {
+public class DFS00{
 	
 	static int dx[] = { 0,0,-1,1 };
 	static int dy[] = { -1,1,0,0 };
-	static int a[][], n, m;
+	static int a[][], n, m, cnt;
+	static Scanner in;
 	
 	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
+		
+		try {			
+			in = new Scanner(System.in);
+			init();
+			System.out.println(solve());
+			in.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void init() {
 		
 		n = in.nextInt();
 		m = in.nextInt();
@@ -28,18 +40,23 @@ public class DFS01 {
 			}
 		}
 		
+	}
+	
+	private static int solve() {
+	
 		int ans=0;
 		for(int i=0; i<n; i++) {
 			for(int j=0; j<m; j++) {
 				if(a[i][j]==1) {
-					dfs(i,j);
-					ans++;
+					dfs(i,j);					
+					ans++;					
 				}
 			}
 		}
-		System.out.println(ans);
+		
+		return ans;
 	}
-
+		
 	static void dfs(int x, int y) {
 		a[x][y]=0;
 		for(int i=0; i<4; i++) {
@@ -52,3 +69,13 @@ public class DFS01 {
 		}
 	}
 }
+
+
+/*
+5 5
+1 1 1 0 1
+1 1 0 0 1
+0 0 1 1 1
+0 1 0 0 0
+1 1 1 1 1
+*/

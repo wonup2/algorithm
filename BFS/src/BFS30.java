@@ -43,11 +43,11 @@ public class BFS30 {
 			a[i]=new ArrayList<Integer>();
 		}
 		
-		for(int i=0; i<m; i++) {
-			int x=in.nextInt()-1;
-			int y=in.nextInt()-1;
-			a[x].add(y);
-			a[y].add(x);
+		for(int i=1; i<=n; i++) {
+			
+			int y=in.nextInt();
+			a[i].add(y);
+			a[y].add(i);
 		}
 	}
 

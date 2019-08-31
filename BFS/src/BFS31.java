@@ -1,6 +1,6 @@
 import java.util.*;
 
-//1260  -  Adjacency List
+//Baek Joon 1260  -  Adjacency List
 /*
 4 5 1
 1 2
@@ -8,6 +8,8 @@ import java.util.*;
 1 4
 2 4
 3 4
+
+1 2 3 4 
 */
 
 public class BFS31 {

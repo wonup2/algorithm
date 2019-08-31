@@ -3,7 +3,7 @@
 import java.util.*;
 import java.io.*;
 
-public class DFS02 {
+public class DFS10 {
 
 	static char a[][];
 	static int n, cnt;

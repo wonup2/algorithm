@@ -1,7 +1,7 @@
 //Baek Joon 6603 Lotto
 
 import java.util.*;
-public class DFS07 {
+public class DFS30 {
 	static int a[]=new int[13], k;
 	static ArrayList<Integer> v;
 	public static void main(String[] args) {

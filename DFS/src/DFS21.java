@@ -3,7 +3,7 @@
 import java.util.*;
 import java.io.*;
 
-public class DFS09{
+public class DFS21{
 	static ArrayList<Integer> a[];
 	static boolean v[];
 	static int ans=0;;
@@ -23,8 +23,10 @@ public class DFS09{
 		}
 		
 		for(int i=1;i<=n;i++){
-		    if(v[i]==false) ans++;
-		    dfs(i);
+		    if(!v[i]) {
+		    	dfs(i);
+		    	ans++;
+		    }		    
 		}
 		System.out.println(ans);
 	}
