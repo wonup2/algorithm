@@ -7,13 +7,13 @@ public class BS_groupSum4 {
 
 	static int a[], n, m, c;
 	static boolean f(int l) {
-	    int s = 0, start = a[0], cnt = 1, cow = 0;
+	    int s = 0, start = a[0], bus = 1, cow = 0;
 	    for (int i = 0; i < n; i++) {
 	    	s = a[i]-start; 
 	    	cow++;
-	        if (cow > c || s > l) { start = a[i]; cnt++; cow=1;}
+	        if (cow > c || s > l) { start = a[i]; bus++; cow=1;}
 	    }
-	    return cnt <= m ;
+	    return bus <= m ;
 	} 
 	
 	public static void main(String[] args) throws IOException{
