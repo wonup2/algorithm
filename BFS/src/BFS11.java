@@ -35,6 +35,7 @@ public class BFS11 {
 				set.add(a[i][j]);
 			}
 		}
+		//System.out.println(set);
 	}
 	
 	static int solve() {
@@ -55,6 +56,7 @@ public class BFS11 {
 			}
 			//-----------
 			max = Math.max(max,count);
+			//System.out.println(k+" "+max);
 		}		
 		return max;
 	}

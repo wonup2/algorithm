@@ -29,7 +29,7 @@ public class BS_groupSum4 {
 	    
 	    Arrays.sort(a);
 	  
-	    int low = 0, up = a[n-1]*2, mid = 0;
+	    int low = 0, up = a[n-1], mid = 0;
 	    while (low <= up) {
 	        mid = (up+low) / 2;	
 	        if(f(mid)) up = mid-1;

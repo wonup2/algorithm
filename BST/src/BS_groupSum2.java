@@ -19,23 +19,23 @@ public class BS_groupSum2 {
 		n=in.nextInt();
 		m=in.nextInt();
 		a=new int[n];
-		for(int i=0; i<n; i++) a[i]=in.nextInt();
-		
+		for(int i=0; i<n; i++) a[i]=in.nextInt();		
 		Arrays.sort(a);
 		
-		int low = 1;
+		
+		
+		int low = 0;
 		int up = a[n-1];
 		int mid = 0;
+		int ans = 0;		
 		
-		while(low<up){
-			//System.out.println(mid+" "+ low+" "+up);
-			mid=(up+low)/2;
-			if(f(mid)) low = mid+1;  	//<----
-			else up = mid-1;			//<----
-			
+		while(low<=up){
+			mid=(up+low)/2; 
+			if(f(mid)) {ans = mid; low = mid+1; } 	//<----
+			else up = mid-1;			//<----			
 		}
 		
-		System.out.println(up);			//<----
+		System.out.println(ans);			//<----
 	}
 
 }

@@ -1,78 +1,76 @@
-//Baek Joon 2178 - Adjacency graph - maze
-/*
-4 6
-101111
-101010
-101011
-111011
-*/
-//If you done, do B2667 - numbering blocks
-
+//7576 Tomato  -- Adjacency Graph
 import java.util.*;
 public class BFS20 {
 
+	static Scanner in;
 	static int n, m, a[][];
 	static Queue<Integer> q;
-	static int dx[]= {-1,1,0,0};
-	static int dy[]= {0,0,-1,1};
-	static Scanner in;
+	static int[] dx= {-1,1,0,0}, dy= {0,0,-1,1};
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) {	
 		in = new Scanner(System.in);
 		init();
 		System.out.println(solve());
 		in.close();
 	}
-	public static void init() {
-		n=in.nextInt();
-		m=in.nextInt();
-		a=new int[n][m];
-		char t[][]=new char[n][m];
-		for(int i=0; i<n; i++) 
-			t[i]=in.next().toCharArray();
-		
-		
-		
-		
-		
-		
-		
-		for(int i=0; i<n; i++)
-			for(int j=0; j<m; j++) 
-				a[i][j] = t[i][j]-'0';
-		
-		
-		
-		
+	static void init() {
+		m = in.nextInt();
+		n = in.nextInt();
+		a = new int[n][m];
+		q = new LinkedList<Integer>();
+
+		for(int i=0; i<n; i++) {
+			for(int j=0; j<m; j++) {
+				a[i][j] = in.nextInt();
+				if(a[i][j]==1) {
+					q.add(i);
+					q.add(j);
+				}
+			}
+		}
 	}
 	
 	static int solve() {
-		q=new LinkedList<Integer>();
-		a[0][0]=2;	
-		bfs(0,0);
-		return (a[n-1][m-1]-1);
+	    bfs();
+	    return check();
 	}
-	
-	
-	
-	
-	
-	static void bfs(int r, int c) {
-		q.add(r);
-		q.add(c);
-		
-		while(!q.isEmpty()) {
-			int x = q.poll();
-			int y = q.poll();
-			for(int i=0; i<4; i++) {
-				int nx=x+dx[i];
-				int ny=y+dy[i];
-				if(nx<0||nx>=n||ny<0||ny>=m || a[nx][ny]!=1) continue;
-		
-				q.add(nx); 
-				q.add(ny);
-				a[nx][ny]=a[x][y]+1;				
-			}
+	static void bfs() {
+		while (!q.isEmpty()) {
+			   int y=q.poll();
+			   int x=q.poll();
+	           for (int i = 0; i < 4; i++) {
+	        	   int nx = x + dx[i];
+	        	   int ny = y + dy[i];	 
+	        	   
+			       if (ny < 0 || ny >= m || nx < 0 || nx >= n || a[ny][nx] != 0 ) continue;
+			  
+			       a[ny][nx] = a[y][x] + 1;
+			       q.add(ny);
+			       q.add(nx);			       
+			   }	         
 		}
+		  //print(a);
+	}
+
+	static void print(int[][] a) {
+		System.out.println();
+		for(int i=0; i<a.length; i++) {
+			for(int j=0; j<a[0].length; j++) {
+				System.out.print(a[i][j]+" ");
+			}System.out.println();
+		}
+	}
+			
+		
+	
+	static int check() {
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < n; i++) {
+		   for (int j = 0; j < m; j++) {
+			   if (a[i][j]==0) return -1;
+		       max = Math.max(max, a[i][j]);
+		   }
+	    }
+		return max-1;
 	}
 }

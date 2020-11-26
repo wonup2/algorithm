@@ -35,7 +35,7 @@ public class BFS12 {
 	        for (int j = 0; j < n; j++) {
 	            if (a[i][j]=='1') {
 	            	bfs(i, j);
-	            	num.add(cnt2);
+	            	num.add(cnt2);   //<-----------
 	            	cnt1++;
 	            }
 	        }
@@ -52,7 +52,7 @@ public class BFS12 {
 		q.add(x);
 		q.add(y);
 		a[x][y]='0';
-		cnt2=1;
+		cnt2=1;  //<------------
 		
 		while(!q.isEmpty()) {
 			x = q.poll();
@@ -66,7 +66,7 @@ public class BFS12 {
 				q.add(nx);
 				q.add(ny);
 				a[nx][ny] = '0';		
-				cnt2++;
+				cnt2++;    //<--------
 			}
 		}
 	}

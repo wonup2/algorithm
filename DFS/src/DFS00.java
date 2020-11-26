@@ -58,7 +58,7 @@ public class DFS00{
 	}
 		
 	static void dfs(int x, int y) {
-		a[x][y]=0;
+		a[x][y]=0;  System.out.println(x+" "+y);
 		for(int i=0; i<4; i++) {
 			int nx = x + dx[i];
 			int ny = y + dy[i];
@@ -73,9 +73,10 @@ public class DFS00{
 
 /*
 5 5
-1 1 1 0 1
-1 1 0 0 1
-0 0 1 1 1
-0 1 0 0 0
-1 1 1 1 1
+0 0 0 0 0 
+0 0 1 0 0 
+0 1 1 1 0 
+0 1 0 1 1
+0 0 0 0 1
+
 */

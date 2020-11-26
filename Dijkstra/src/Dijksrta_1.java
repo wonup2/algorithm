@@ -39,9 +39,7 @@ public class Dijksrta_1 {
 			int cur = key.next();
 			key.remove();
 			System.out.println(key);
-		}
-		
-		
+		}		
 	}
 }
 /*

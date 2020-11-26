@@ -1,3 +1,6 @@
+//유형1. 동시에 진행되는 탐색이 1개뿐인 것
+
+
 //Adjacency Graph - How many islands?
 /*
 4 5

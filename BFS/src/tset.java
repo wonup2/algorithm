@@ -12,14 +12,19 @@ public class BFS00 {
 	
 	public static void main(String[] args) {
 		in = new Scanner(System.in);
-		init();
-		solve();
+		
+		while(true) {
+			m = in.nextInt();
+			n = in.nextInt();
+			if(m==0) break;
+			init();
+			solve();
+		}
 		in.close();			
 	}
 	
 	static void init() {
-		n = in.nextInt();
-		m = in.nextInt();
+		
 		a = new int[n][m];
 		for(int i=0; i<n; i++) {
 			for(int j=0; j<m; j++) {
@@ -51,7 +56,7 @@ public class BFS00 {
 		while(!q.isEmpty()) {
 			x = q.poll();
 			y = q.poll();
-			
+			System.out.println(x+" "+y);
 			for(int i=0; i<4; i++) {
 				int nx = x + dx[i];
 				int ny = y + dy[i];
