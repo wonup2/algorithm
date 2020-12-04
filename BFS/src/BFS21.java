@@ -1,13 +1,13 @@
-//2146 다리 만들기
 import java.util.*;
-public class BFS21 {
 
+public class BFS21{
+	static int dx[] = {0,0,1,-1};
+	static int dy[] = {-1,1,0,0};
+	static int[][] a, b;
+	static Queue<Integer> q1, q2;
+	static int n;
 	static Scanner in;
-	static int n, a[][], d[][], g[][], cnt;
-	static Queue<pair> q;
-	static int[] dx= {-1,1,0,0}, dy= {0,0,-1,1};
-	
-	public static void main(String[] args) {	
+	public static void main(String[] args) {
 		in = new Scanner(System.in);
 		init();
 		solve();
@@ -16,102 +16,130 @@ public class BFS21 {
 	static void init() {
 		n = in.nextInt();
 		a = new int[n][n];
-		d = new int[n][n];
-		g = new int[n][n];
+		b = new int[n][n];
 		
-		cnt=0;
+		q1 = new LinkedList<Integer>();
+		q2 = new LinkedList<Integer>();
 		
 		for(int i=0; i<n; i++) {
 			for(int j=0; j<n; j++) {
-				a[i][j] = in.nextInt();				
+				a[i][j] = in.nextInt();
+				b[i][j] = a[i][j];
+				if(a[i][j]==1) { 
+					q1.add(i); q1.add(j); 
+					q2.add(i); q2.add(j); 
+				}
 			}
 		}
 	}
 	
 	static void solve() {
+		int cnt = 2;
 		for(int i=0; i<n; i++) {
 			for(int j=0; j<n; j++) {
-				if(a[i][j] ==1 && g[i][j]==0) {
-					g[i][j]=++cnt;
-					bfs(i,j);
+				if(a[i][j]==1) { 
+					bfs(i,j, cnt);
+					cnt++;
 				}
 			}
 		}
+			
+		distance();		
+		border();		
+		//print(a); print(b);
 		
-		q = new LinkedList<pair>(); //큐 재생성
-        for (int i=0; i<n; i++) {
-            for (int j=0; j<n; j++) {
-                d[i][j] = -1; //d에 우선 -1넣어둔다.
-                if (a[i][j] == 1) { 
-                    q.add(new pair(i,j)); //1인곳을 q에 넣어주고
-                    d[i][j] = 0; //섬을 0으로 표시
-                }
-            }
-        }
-
-        while (!q.isEmpty()) {
-        	pair p = q.remove();
-            int x = p.x;
-            int y = p.y;
-            for (int k=0; k<4; k++) {
-                int nx = x+dx[k];
-                int ny = y+dy[k];
-                if (0 <= nx && nx < n && 0 <= ny && ny < n) 
-                    if (d[nx][ny] == -1) { //섬이 아닌곳이면
-                        d[nx][ny] = d[x][y] + 1; //거리를 1증가
-                        g[nx][ny] = g[x][y]; //섬의 영역도 섬을 표시한 같은 숫자로 확장시킨다. 
-                        q.add(new pair(nx,ny)); //bfs
-                    }
-            }
-        }
-        int ans = -1; 
+		int ans = Integer.MAX_VALUE;
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
                 for (int k=0; k<4; k++) {
                     int x = i+dx[k];
                     int y = j+dy[k];
-                    if (0 <= x && x < n && 0 <= y && y < n) 
-                        if (g[i][j] != g[x][y])  //인접한 섬의 영역이 다를 때
-                            if (ans == -1 || ans > d[i][j] + d[x][y])  //인접한거리+현재거리 최소값 찾기
-                                ans = d[i][j] + d[x][y];
+                    if (0 > x || x >= n || 0 > y || y >= n) continue;
+                    if (a[i][j] != a[x][y]) ans = Math.min(ans, b[i][j] + b[x][y]);
                 }
             }
         }
-        System.out.println(ans);
-    }
+        
+		System.out.println(ans);
+		
+	}
 	
-	static void bfs(int i, int j) {
-		q = new LinkedList<pair>();
-		q.add(new pair(i,j));
-		while (!q.isEmpty()) {
-            pair p = q.poll();
-            int x = p.x;
-            int y = p.y;
-            for (int k=0; k<4; k++) {
-                int nx = x+dx[k];
-                int ny = y+dy[k];
-                if (0 <= nx && nx < n && 0 <= ny && ny < n) 
-                    if (a[nx][ny] == 1 && g[nx][ny] == 0) {
-                        q.add(new pair(nx, ny));
-                        g[nx][ny] = cnt; 
-                    }
-            }
+	static void bfs(int h, int k, int cnt) {
+		Queue<Integer> q = new LinkedList<Integer>();
+		q.add(h); q.add(k);
+		a[h][k] = cnt;
+		while(!q.isEmpty()) {
+			int x = q.poll();
+			int y = q.poll();
+			for(int i=0; i<4; i++) {
+				int nx = x+dx[i];
+				int ny = y+dy[i];
+				if(nx<0||nx>=n||ny<0||ny>=n||a[nx][ny]!=1) continue;
+				a[nx][ny] = cnt;
+				q.add(nx); q.add(ny);
+			}
 		}
 	}
-
-	static void print(int[][] a) {
+	
+	static void distance() {
+		while(!q1.isEmpty()) {
+			int x = q1.poll();
+			int y = q1.poll();
+			for(int i=0; i<4; i++) {
+				int nx = x+dx[i];
+				int ny = y+dy[i];
+				if(nx<0 || nx>=n || ny<0 || ny>=n)continue;
+				if(b[nx][ny]==0) {
+					b[nx][ny] = b[x][y] + 1;
+					q1.add(nx); q1.add(ny);
+				}
+			}
+		}
+		change();
+	}
+	
+	static void change() {
+		for(int i=0; i<n; i++) {
+			for(int j=0;j<n; j++) {
+				b[i][j] = b[i][j]-1;
+			}
+		}
+	}
+	
+	
+	
+	static void border() {
+		while(!q2.isEmpty()) {
+			int x = q2.poll();
+			int y = q2.poll();
+			for(int i=0; i<4; i++) {
+				int nx = x+dx[i];
+				int ny = y+dy[i];
+				if(nx<0 || nx>=n || ny<0 || ny>=n)continue;
+				if(a[nx][ny]==0) {
+					a[nx][ny] = a[x][y];
+					q2.add(nx); q2.add(ny);
+				}
+			}
+		}
+	}
+	
+	static void print(int[][]a) {
 		System.out.println();
-		for(int i=0; i<a.length; i++) {
-			for(int j=0; j<a[0].length; j++) {
+		for(int i=0; i<n; i++) {
+			for(int j=0; j<n; j++) {
 				System.out.print(a[i][j]+" ");
-			}System.out.println();
-		}
-	}
-	
-	static class pair{
-		int x, y;
-		pair(int a, int b){
-			x=a; y=b;
+			}
+			System.out.println();
 		}
 	}
 }
+
+/*
+5
+1 1 1 0 1
+1 1 0 0 1
+1 0 0 1 1
+0 0 0 0 0
+1 1 1 1 1
+*/
