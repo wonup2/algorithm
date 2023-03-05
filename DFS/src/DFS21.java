@@ -4,11 +4,16 @@ import java.util.*;
 import java.io.*;
 
 public class DFS21{
+	
+	static BufferedReader br;
+	
 	static ArrayList<Integer> a[];
 	static boolean v[];
-	static int ans=0;;
+	static int ans=0;
 	public static void main (String[] args) throws java.lang.Exception	{	
-		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		
+		br=new BufferedReader(new InputStreamReader(System.in));
+		
 		int n=Integer.parseInt(br.readLine());
 		a=new ArrayList[n+1];
 		v=new boolean[n+1];
@@ -31,14 +36,11 @@ public class DFS21{
 		System.out.println(ans);
 	}
 	
-	static void dfs(int index)
-	{
-	    if(v[index]==true) return;
+	static void dfs(int i){
 	    
-	    v[index]=true;    
+	    v[i]=true;    
 	    
-	    for(int p:a[index]){
-	        if(v[p]==false) dfs(p);
-	    }
+	    for(int p:a[i])
+	        if(!v[p]) dfs(p);	    
 	}
 }

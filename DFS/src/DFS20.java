@@ -1,58 +1,58 @@
-//B11724 - Adjacency List
+//https://www.acmicpc.net/problem/11724
 
 import java.io.*;
 import java.util.*;
 public class DFS20 {
 	
+	static Scanner in;
 	static int n, m;
 	static ArrayList<Integer>[] a;
 	static boolean[] v;
-	
+
 	public static void main(String[] args){
-		try {		
-			init();
-			System.out.println(solve());
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		
+		in = new Scanner(System.in);
+		init();
+		solve();
+		
+		in.close();
 	}
 	
 	static void init() {
-		Scanner in = new Scanner(System.in);
+		
 		n = in.nextInt();
 		m = in.nextInt();
-		a = new ArrayList[n+1];
-		v = new boolean[n+1];		
-		for(int i=0; i<n+1; i++){
-			a[i]=new ArrayList<Integer>();
-		}
+		
+		a = new ArrayList[n+1];		
+		for(int i=0; i<n+1; i++) a[i]=new ArrayList<Integer>();		
 					
 		for(int i=0; i<m; i++){
-			int n1 = in.nextInt();
-			int n2 = in.nextInt();
-				a[n1].add(n2);
-				a[n2].add(n1);			
-			}		
-		in.close();		
+			int x = in.nextInt();
+			int y = in.nextInt();
+			a[x].add(y);
+			a[y].add(x);			
+		}		
+		
+		v = new boolean[n+1];	
 	}
 	
-	static String solve() {
+	static void solve() {
+		
 		int ans = 0;
+		
 		for(int i=1; i<=n; i++){
 			if(!v[i]){
 				dfs(i);
 				ans++;
 			}
 		}
-		return ans+"";
+		
+		System.out.println(ans);
 	}
 	
-	static void dfs(int s){
-		if(v[s]) return;
-		v[s]=true;
-		for(int i:a[s]){
-			if(!v[i]) dfs(i);
-		}
+	static void dfs(int i){
+		v[i]=true;
+		for(int next:a[i]) 
+			if(!v[next]) dfs(next);
 	}	
 }

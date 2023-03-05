@@ -3,7 +3,7 @@
 import java.util.*;
 public class BFS11 {
 
-	static int n, a[][], b[][];
+	static int n, a[][], b[][], ans;
 	static Set<Integer> set;
 	static Queue<Integer> q;
 	static int dx[] = {0, 0, -1, 1};
@@ -13,7 +13,7 @@ public class BFS11 {
 
 		try {			
 			init();
-			System.out.println(solve());
+			solve();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -35,13 +35,12 @@ public class BFS11 {
 				set.add(a[i][j]);
 			}
 		}
-		//System.out.println(set);
 	}
 	
-	static int solve() {
+	static void solve() {
 		
 		b=new int[n][n];
-		int max = 0;
+		
 		for(int k: set) {
 			reset_b(k);
 			//-----------
@@ -55,12 +54,21 @@ public class BFS11 {
 				}
 			}
 			//-----------
-			max = Math.max(max,count);
-			//System.out.println(k+" "+max);
+			ans = Math.max(ans,count);
 		}		
-		return max;
+		System.out.println(ans);
 	}
 	
+	static void reset_b(int k) {
+		
+		for(int i=0; i<n; i++) {
+			for(int j=0; j<n; j++) {
+				b[i][j] = a[i][j]>k? 1:0;
+			}
+		}
+		
+	}
+
 	static void bfs(int x, int y) {
 		q.add(x); q.add(y);
 		b[x][y]=0;
@@ -76,11 +84,5 @@ public class BFS11 {
 		}
 	}
 		
-	static void reset_b(int k) {
-		for(int i=0; i<n; i++) {
-			for(int j=0; j<n; j++) {
-				b[i][j] = a[i][j]>k? 1:0;
-			}
-		}
-	}
+	
 }

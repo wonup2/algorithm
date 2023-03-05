@@ -62,10 +62,8 @@ public class DFS00{
 		for(int i=0; i<4; i++) {
 			int nx = x + dx[i];
 			int ny = y + dy[i];
-			if(nx<0||ny<0||nx>=n||ny>=m) continue;
-			if(a[nx][ny]==1) {
-				dfs(nx, ny);
-			}
+			if(nx<0||ny<0||nx>=n||ny>=m ||a[nx][ny] == 0) continue;
+			dfs(nx, ny);			
 		}
 	}
 }
