@@ -20,37 +20,47 @@ public class BFS20 {
 		n=in.nextInt();
 		m=in.nextInt();
 
-		v=new boolean[n+1];
-		a=new ArrayList[n+1];
+		v=new boolean[n+1];		
 		q=new LinkedList<Integer>();
+		
+		a=new ArrayList[n+1];
 		for(int i=0; i<n+1; i++) 			
 			a[i]=new ArrayList<Integer>();
 		
-		for(int i=1; i<=n; i++) {			
-			int y=in.nextInt();
-			a[i].add(y);
-			a[y].add(i);
-		}
+		for(int i=0; i<m; i++) {	
+			int x = in.nextInt();
+			int y = in.nextInt();
+			a[x].add(y);
+			a[y].add(x);
+		}		
+		System.out.println(Arrays.toString(a));
 	}
 
-	static String solve() {
-		return bfs(s-1);
+	static void solve() {
+		
+		int group=0;
+		for(int i=1; i<=n; i++) {
+			if(!v[i]) {
+				bfs(i);
+				group++;
+			}
+		}		
+		System.out.println(group);
 	}
 	
-	static String bfs(int s) {
+	static void bfs(int s) {
 		v[s]=true;
-		String result="";
 		q.add(s);
 		
 		while(!q.isEmpty()) {
+			
 			int n=q.poll();
-			result+=(n+1)+" ";
+			
 			for(int i:a[n]) {
 				if(v[i]) continue;
 				v[i]=true;
 				q.add(i);				
 			}
 		}
-		return result;
 	}
 }

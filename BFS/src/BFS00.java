@@ -4,11 +4,6 @@ import java.util.*;
 
 public class BFS00 {
 
-	static int n, m, a[][];
-	static Queue<Integer> q;
-	static Scanner in;
-	static int dx[]= {-1,1,0,0};
-	static int dy[]= {0,0,-1,1};
 	
 	public static void main(String[] args) {
 		in = new Scanner(System.in);
@@ -27,6 +22,13 @@ public class BFS00 {
 			}
 		}
 	}
+	
+
+	static int n, m, a[][];
+	static Queue<Integer> q;
+	static Scanner in;
+	static int dx[]= {-1,1,0,0};
+	static int dy[]= {0,0,-1,1};
 	
 	static int solve() {
 		int cnt = 0;
