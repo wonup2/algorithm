@@ -1,6 +1,6 @@
 //7576 Tomato  -- Adjacency Graph
 import java.util.*;
-public class BFS16 {
+public class BFS16_b7576 {
 
 	static Scanner in;
 	static int n, m, a[][];
@@ -51,17 +51,6 @@ public class BFS16 {
 		}
 		  //print(a);
 	}
-
-	static void print(int[][] a) {
-		System.out.println();
-		for(int i=0; i<a.length; i++) {
-			for(int j=0; j<a[0].length; j++) {
-				System.out.print(a[i][j]+" ");
-			}System.out.println();
-		}
-	}
-			
-		
 	
 	static int check() {
 		int max = Integer.MIN_VALUE;
@@ -72,5 +61,15 @@ public class BFS16 {
 		   }
 	    }
 		return max-1;
+	}	
+
+	static void print(int[][] a) {
+		System.out.println();
+		for(int i=0; i<a.length; i++) {
+			for(int j=0; j<a[0].length; j++) {
+				System.out.print(a[i][j]+" ");
+			}System.out.println();
+		}
 	}
+		
 }

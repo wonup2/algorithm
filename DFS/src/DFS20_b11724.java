@@ -2,7 +2,7 @@
 
 import java.io.*;
 import java.util.*;
-public class DFS22 {
+public class DFS20_b11724 {
 	
 	static Scanner in;
 	static int n, m, ans;

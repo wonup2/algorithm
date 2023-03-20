@@ -1,7 +1,7 @@
 //백준 2146 다리 만들기 
 import java.util.*;
 
-public class BFS17{
+public class BFS17_b2146{
 	static int dx[] = {0,0,1,-1};
 	static int dy[] = {-1,1,0,0};
 	static int[][] a, b;
